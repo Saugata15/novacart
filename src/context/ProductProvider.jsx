@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import MyStore from "./MyStore";
+import ProductContext from "./ProductContext";
 import axios from "axios";
 
-const ProductContextProvider = ({ children }) => {
+const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("products"));
+      return JSON.parse(localStorage.getItem("products")) || [];
     } catch {
       return [];
     }
@@ -17,6 +17,7 @@ const ProductContextProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
+      setError(null);
       const res = await axios.get("https://dummyjson.com/products");
       setProducts(res.data.products);
     } catch (err) {
@@ -27,7 +28,9 @@ const ProductContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    if (products.length === 0) {
+      fetchProducts();
+    }
   }, []);
 
   useEffect(() => {
@@ -35,10 +38,10 @@ const ProductContextProvider = ({ children }) => {
   }, [products]);
 
   return (
-    <MyStore.Provider value={{ products, loading, error }}>
+    <ProductContext.Provider value={{ products, loading, error }}>
       {children}
-    </MyStore.Provider>
+    </ProductContext.Provider>
   );
 };
 
-export default ProductContextProvider;
+export default ProductProvider;

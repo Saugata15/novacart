@@ -1,9 +1,12 @@
 import React from 'react'
+import Header from './components/Header'
+import AppRoutes from './routes/AppRoutes'
 
 const App = () => {
   return (
     <div>
-      <h1>Lest's do it</h1>
+      <Header/>
+      <AppRoutes/>
     </div>
   )
 }
