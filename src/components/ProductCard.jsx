@@ -3,8 +3,10 @@ import CartContext from "../context/CartContext";
 import { useContext } from "react";
 
 const ProductCard = ({ product }) => {
-  const { addToCart, cartItems } = useContext(CartContext);
+  const { addToCart, cartItems, wishlistItems, toggleWishList } =
+    useContext(CartContext);
   const isInCart = cartItems.some((item) => item.id === product.id);
+  const isWishlisted = wishlistItems.some((item) => item.id === product.id);
 
   return (
     <div className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10">
@@ -21,8 +23,21 @@ const ProductCard = ({ product }) => {
 
         {/* Wishlist */}
 
-        <button className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow transition hover:bg-amber-400 hover:text-slate-900">
-          <Heart size={18} />
+        <button
+          onClick={() => toggleWishList(product)}
+          className={`group absolute right-4 top-4 z-10 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 ${
+            isWishlisted
+              ? "border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/30"
+              : "border-white/20 bg-white/90 text-slate-700 hover:border-red-400 hover:bg-white"
+          }`}
+        >
+          <Heart
+            className={`h-5 w-5 transition-all duration-300 ${
+              isWishlisted
+                ? "fill-current"
+                : "group-hover:fill-red-500 group-hover:text-red-500"
+            }`}
+          />
         </button>
 
         <img
@@ -83,12 +98,12 @@ const ProductCard = ({ product }) => {
           <button
             onClick={() => addToCart(product)}
             className={`group flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 cursor-pointer
-  ${
-    isInCart
-      ? "bg-green-500 text-white hover:bg-green-600"
-      : "bg-amber-400 text-slate-900 hover:bg-amber-500"
-  }
-  hover:-translate-y-1 hover:shadow-lg active:scale-95`}
+            ${
+              isInCart
+                ? "bg-green-500 text-white hover:bg-green-600"
+                : "bg-amber-400 text-slate-900 hover:bg-amber-500"
+            }
+            hover:-translate-y-1 hover:shadow-lg active:scale-95`}
           >
             <ShoppingCart className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
           </button>

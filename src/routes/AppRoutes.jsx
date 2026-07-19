@@ -4,6 +4,7 @@ import About from "../pages/About"
 import React from 'react'
 import { Route, Routes } from 'react-router'
 import Cart from "../pages/Cart"
+import Wishlist from "../pages/Wishlist"
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/wishlist' element={<Wishlist/>}/>
       </Routes>
     </div>
   )

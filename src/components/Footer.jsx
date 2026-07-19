@@ -21,7 +21,7 @@ const Footer = () => {
         {/* Copyright */}
 
         <p className="text-center text-sm text-slate-400">
-          © {new Date().getFullYear()} NovaCart. All rights reserved.
+          © {new Date().getFullYear()} NovaCart. Created by Saugata Das.
         </p>
       </div>
     </footer>

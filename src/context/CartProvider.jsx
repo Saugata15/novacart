@@ -12,13 +12,21 @@ const CartProvider = ({ children }) => {
 
   const [wishlistItems, setWishlistItems] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("cart")) || [];
+      return JSON.parse(localStorage.getItem("wishlist")) || [];
     } catch {
       return [];
     }
   });
 
-  console.log(cartItems);
+  const toggleWishList = (product) => {
+    setWishlistItems((prev) => {
+      let existingItem = prev.find((item)=>item.id === product.id);
+      if(existingItem) {
+        return prev.filter((item)=> item.id !== product.id)
+      }
+      return [...prev, product];
+    });
+  };
 
   const addToCart = (product) => {
     setCartItems((prev) => {
@@ -65,6 +73,10 @@ const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
+  }, [wishlistItems]);
+
   return (
     <CartContext.Provider
       value={{
@@ -74,7 +86,8 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
-        wishlistItems
+        wishlistItems,
+        toggleWishList
       }}
     >
       {children}
