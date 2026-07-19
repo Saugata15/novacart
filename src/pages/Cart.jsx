@@ -18,7 +18,7 @@ const Cart = () => {
 
   if (cartItems.length === 0) {
     return (
-      <section className="flex min-h-[70vh] items-center justify-center bg-slate-950">
+      <section className="flex min-h-[75vh] items-center justify-center bg-slate-950">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
             Your Cart is Empty

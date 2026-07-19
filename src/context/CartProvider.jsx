@@ -10,6 +10,14 @@ const CartProvider = ({ children }) => {
     }
   });
 
+  const [wishlistItems, setWishlistItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    } catch {
+      return [];
+    }
+  });
+
   console.log(cartItems);
 
   const addToCart = (product) => {
@@ -43,7 +51,9 @@ const CartProvider = ({ children }) => {
     setCartItems((prev) => {
       if (product.quantity > 1) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item,
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
         );
       } else {
         return prev.filter((item) => item.id !== product.id);
@@ -64,6 +74,7 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
+        wishlistItems
       }}
     >
       {children}
