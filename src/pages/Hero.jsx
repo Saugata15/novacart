@@ -42,12 +42,12 @@ const Hero = () => {
             </p>
 
             <div className="mt-6 sm:mt-10 flex flex-wrap gap-5">
-              <button className="flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-slate-900 transition hover:scale-105 hover:bg-amber-500 sm:px-7 sm:py-4">
+              <button className="flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-slate-900 transition hover:scale-105 hover:bg-amber-500 sm:px-7 sm:py-4 cursor-pointer">
                 Shop Now
                 <ArrowRight size={18} />
               </button>
 
-              <button className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 sm:px-7 sm:py-4">
+              <button className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 sm:px-7 sm:py-4 cursor-pointer">
                 Browse Products
               </button>
             </div>
@@ -99,7 +99,7 @@ const Hero = () => {
                 Premium Shopping Experience
               </p>
 
-              <button className="mt-8 w-full rounded-xl bg-amber-400 py-3 font-semibold text-slate-900 transition hover:bg-amber-500">
+              <button className="mt-8 w-full rounded-xl bg-amber-400 py-3 font-semibold text-slate-900 transition hover:bg-amber-500 cursor-pointer">
                 Explore Collection
               </button>
             </div>
