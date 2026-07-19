@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ProductContext from "../context/ProductContext";
-import Hero from "./Hero";
+import Hero from "../components/Hero";
 import Categories from "../components/Categories";
 import TopRated from "../components/TopRated";
 

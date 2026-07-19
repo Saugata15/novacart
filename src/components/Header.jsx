@@ -1,22 +1,16 @@
-import { useState } from "react";
-import {
-  ShoppingBag,
-  ShoppingCart,
-  User,
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react";
-import { NavLink } from "react-router";
+import { useContext, useState } from "react";
+import { ShoppingBag, ShoppingCart, User, LogOut, Menu, X } from "lucide-react";
+import { NavLink, useNavigate } from "react-router";
+import CartContext from "../context/CartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { cartItems } = useContext(CartContext);
 
   const navStyle = ({ isActive }) =>
     `relative text-md font-medium transition duration-300 ${
-      isActive
-        ? "text-amber-400"
-        : "text-slate-300 hover:text-amber-400"
+      isActive ? "text-amber-400" : "text-slate-300 hover:text-amber-400"
     }`;
 
   return (
@@ -25,7 +19,10 @@ const Header = () => {
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 sm:gap-3">
           <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-amber-400 text-slate-900 shadow-lg">
-            <ShoppingBag className="h-4.5 w-4.5 md:h-5 md:w-5" strokeWidth={2.5} />
+            <ShoppingBag
+              className="h-4.5 w-4.5 md:h-5 md:w-5"
+              strokeWidth={2.5}
+            />
           </div>
 
           <h1 className="text-xl font-extrabold tracking-tight sm:text-3xl">
@@ -54,23 +51,24 @@ const Header = () => {
           {/* Cart */}
           <button
             className="relative rounded-xl border border-slate-700 p-2 sm:p-3 transition
-            hover:border-amber-400 hover:bg-slate-800"
+            hover:border-amber-400 hover:bg-slate-800 cursor-pointer"
+            onClick={() => navigate("/cart")}
           >
-            <ShoppingCart className="text-slate-200 h-4 w-4 md:h-5 md:w-5 lg:h-6 lg:w-6"/>
+            <ShoppingCart className="text-slate-200 h-4 w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
 
             <span
               className="absolute -right-2 -top-2 flex h-5 w-5
               items-center justify-center rounded-full
               bg-amber-400 text-xs font-bold text-slate-900"
             >
-              2
+              {cartItems.length}
             </span>
           </button>
 
           {/* Profile */}
           <button
             className="rounded-xl border border-slate-700 p-2 sm:p-3 transition
-            hover:border-amber-400 hover:bg-slate-800"
+            hover:border-amber-400 hover:bg-slate-800 cursor-pointer"
           >
             <User className="text-slate-200 h-4 w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
           </button>
@@ -79,7 +77,7 @@ const Header = () => {
           <button
             className="hidden items-center gap-2 rounded-xl bg-amber-400
             px-5 py-3 font-semibold text-slate-900 transition
-            hover:bg-amber-500 lg:flex"
+            hover:bg-amber-500 lg:flex cursor-pointer"
           >
             <LogOut size={18} />
             Logout
@@ -88,9 +86,13 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-xl border border-slate-700 p-2 sm:p-3 text-white transition hover:border-amber-400 hover:bg-slate-800 lg:hidden"
+            className="rounded-xl border border-slate-700 p-2 sm:p-3 text-white transition hover:border-amber-400 hover:bg-slate-800 lg:hidden cursor-pointer"
           >
-            {isOpen ? <X className="h-4 w-4 md:h-5 md:w-5" /> : <Menu className="h-4 w-4 md:h-5 md:w-5" />}
+            {isOpen ? (
+              <X className="h-4 w-4 md:h-5 md:w-5" />
+            ) : (
+              <Menu className="h-4 w-4 md:h-5 md:w-5" />
+            )}
           </button>
         </div>
       </div>

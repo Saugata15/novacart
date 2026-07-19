@@ -27,12 +27,45 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const increaseQuantity = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    );
+  };
+
+  const decreaseQuantity = (product) => {
+    setCartItems((prev) => {
+      if (product.quantity > 1) {
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item,
+        );
+      } else {
+        return prev.filter((item) => item.id !== product.id);
+      }
+    });
+  };
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, addToCart }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        setCartItems,
+        addToCart,
+        removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
