@@ -12,3 +12,29 @@ body {
   background: #f8fafc;
   color: #0f172a;
 }
+
+/* .swiper-button-next,
+.swiper-button-prev {
+  color: #fbbf24;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 22px;
+}
+
+.swiper-button-disabled {
+  opacity: 0.3;
+} */
+
+.category-next:active,
+.category-prev:active {
+    transform: scale(.92);
+}
+
+.category-next.swiper-button-disabled,
+.category-prev.swiper-button-disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
