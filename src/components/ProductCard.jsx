@@ -1,10 +1,13 @@
 import { Heart, ShoppingCart, Star } from "lucide-react";
+import CartContext from "../context/CartContext";
+import { useContext } from "react";
 
 const ProductCard = ({ product }) => {
+  const { addToCart, cartItems } = useContext(CartContext);
+  const isInCart = cartItems.some((item) => item.id === product.id);
+
   return (
-    <div
-      className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10"
-    >
+    <div className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10">
       {/* Product Image */}
 
       <div className="relative overflow-hidden bg-white">
@@ -53,14 +56,9 @@ const ProductCard = ({ product }) => {
         {/* Rating */}
 
         <div className="mt-5 flex items-center gap-2">
-          <Star
-            className="fill-amber-400 text-amber-400"
-            size={18}
-          />
+          <Star className="fill-amber-400 text-amber-400" size={18} />
 
-          <span className="font-medium text-white">
-            {product.rating}
-          </span>
+          <span className="font-medium text-white">{product.rating}</span>
         </div>
 
         {/* Price */}
@@ -83,11 +81,16 @@ const ProductCard = ({ product }) => {
           </div>
 
           <button
-            className="flex h-12 w-12 items-center justify-center rounded-xl
-            bg-amber-400 text-slate-900 transition-all duration-300
-            hover:scale-110 hover:bg-amber-500"
+            onClick={() => addToCart(product)}
+            className={`group flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 cursor-pointer
+  ${
+    isInCart
+      ? "bg-green-500 text-white hover:bg-green-600"
+      : "bg-amber-400 text-slate-900 hover:bg-amber-500"
+  }
+  hover:-translate-y-1 hover:shadow-lg active:scale-95`}
           >
-            <ShoppingCart size={20} />
+            <ShoppingCart className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
           </button>
         </div>
       </div>

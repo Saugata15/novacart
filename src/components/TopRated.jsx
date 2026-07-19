@@ -1,11 +1,12 @@
 import { Star, ShoppingCart } from "lucide-react";
 import ProductCard from "./ProductCard";
+import CartContext from "../context/CartContext";
 
 const TopRated = ({ products }) => {
   const topRatedProducts = products.filter((product) => product.rating >= 4.5);
 
   return (
-    <section className="bg-slate-950 pt-10 pb-10 sm:pb-20">
+    <section className="bg-slate-950 sm:pt-10 pb-10 sm:pb-20">
       <div className="mx-auto max-w-7xl px-5">
         {/* Heading */}
 
