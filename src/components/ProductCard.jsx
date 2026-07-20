@@ -1,15 +1,20 @@
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import CartContext from "../context/CartContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ product }) => {
   const { addToCart, cartItems, wishlistItems, toggleWishList } =
     useContext(CartContext);
+  const navigate = useNavigate();
   const isInCart = cartItems.some((item) => item.id === product.id);
   const isWishlisted = wishlistItems.some((item) => item.id === product.id);
 
   return (
-    <div className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10">
+    <div
+      className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10"
+      onClick={() => navigate(`/products/${product.id}`)}
+    >
       {/* Product Image */}
 
       <div className="relative overflow-hidden bg-white">
@@ -24,7 +29,10 @@ const ProductCard = ({ product }) => {
         {/* Wishlist */}
 
         <button
-          onClick={() => toggleWishList(product)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleWishList(product);
+          }}
           className={`group absolute right-4 top-4 z-10 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 ${
             isWishlisted
               ? "border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/30"
@@ -96,7 +104,10 @@ const ProductCard = ({ product }) => {
           </div>
 
           <button
-            onClick={() => addToCart(product)}
+            onClick={(e) => {
+              e.stopPropagation();
+              addToCart(product);
+            }}
             className={`group flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 cursor-pointer
             ${
               isInCart

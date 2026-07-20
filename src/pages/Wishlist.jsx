@@ -9,7 +9,7 @@ const Wishlist = () => {
 
   if (wishlistItems.length === 0) {
     return (
-      <section className="flex min-h-[80vh] items-center justify-center bg-slate-950 px-5">
+      <section className="flex min-h-[80vh] items-center justify-center bg-slate-950 px-5 sm:px-10">
         <div className="max-w-md text-center">
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-red-500/10">
             <Heart className="h-12 w-12 text-red-500" fill="currentColor" />

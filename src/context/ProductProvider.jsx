@@ -18,7 +18,9 @@ const ProductProvider = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
+      
       const res = await axios.get("https://dummyjson.com/products");
+      
       setProducts(res.data.products);
     } catch (err) {
       setError(err.message);
@@ -30,9 +32,7 @@ const ProductProvider = ({ children }) => {
   const categories = ["all" , ...new Set(products.map((item)=>item.category))]
 
   useEffect(() => {
-    if (products.length === 0) {
-      fetchProducts();
-    }
+    fetchProducts();
   }, []);
 
   useEffect(() => {

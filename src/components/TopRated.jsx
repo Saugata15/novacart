@@ -7,7 +7,7 @@ const TopRated = ({ products }) => {
 
   return (
     <section className="bg-slate-950 sm:pt-10 pb-10 sm:pb-20">
-      <div className="mx-auto max-w-7xl px-5">
+      <div className="mx-auto max-w-7xl px-5 sm:px-10">
         {/* Heading */}
 
         <div className="mb-12">

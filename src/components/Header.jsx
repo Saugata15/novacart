@@ -24,17 +24,17 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-700 bg-slate-900 shadow-lg">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-6">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-10">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-1 sm:gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-slate-900 shadow-lg sm:h-11 sm:w-11 sm:rounded-2xl">
+        <NavLink to="/" className="flex items-center gap-2 sm:gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400 text-slate-900 shadow-lg sm:h-11 sm:w-11 sm:rounded-2xl">
             <ShoppingBag
               className="h-4.5 w-4.5 md:h-5 md:w-5"
               strokeWidth={2.5}
             />
           </div>
 
-          <h1 className="text-xl font-extrabold tracking-tight sm:text-3xl">
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
             <span className="text-white">Nova</span>
             <span className="text-amber-400">Cart</span>
           </h1>

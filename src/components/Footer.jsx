@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 const Footer = () => {
   return (
     <footer className="border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 md:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:px-10 py-8 md:flex-row">
         {/* Logo */}
 
         <NavLink to="/" className="flex items-center gap-3">

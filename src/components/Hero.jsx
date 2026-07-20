@@ -6,21 +6,26 @@ import {
   Truck,
   ShoppingBag,
 } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative overflow-hidden bg-slate-950">
       {/* Glow Effects */}
       <div className="absolute -left-40 top-10 h-96 w-96 rounded-full bg-amber-400/10 blur-[120px]" />
       <div className="absolute right-0 top-40 h-112 w-md rounded-full bg-yellow-500/10 blur-[140px]" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-12 md:py-20">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-10 py-12 md:py-20">
         <div className="grid items-center gap-14 sm:gap-16 lg:grid-cols-2">
           {/* LEFT */}
 
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-400/30
-             bg-amber-400/10 px-4 py-2 text-xs font-medium text-amber-400 backdrop-blur-sm sm:px-5 sm:text-sm">
+            <div
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-400/30
+             bg-amber-400/10 px-4 py-2 text-xs font-medium text-amber-400 backdrop-blur-sm sm:px-5 sm:text-sm"
+            >
               <Star size={16} fill="currentColor" />
               New Collection 2026
             </div>
@@ -42,12 +47,18 @@ const Hero = () => {
             </p>
 
             <div className="mt-6 sm:mt-10 flex flex-wrap gap-5">
-              <button className="flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-slate-900 transition hover:scale-105 hover:bg-amber-500 sm:px-7 sm:py-4 cursor-pointer">
+              <button
+                className="flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-slate-900 transition hover:scale-105 hover:bg-amber-500 sm:px-7 sm:py-4 cursor-pointer"
+                onClick={() => navigate("/shop")}
+              >
                 Shop Now
                 <ArrowRight size={18} />
               </button>
 
-              <button className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 sm:px-7 sm:py-4 cursor-pointer">
+              <button
+                className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 sm:px-7 sm:py-4 cursor-pointer"
+                onClick={() => navigate("/shop")}
+              >
                 Browse Products
               </button>
             </div>
@@ -99,7 +110,10 @@ const Hero = () => {
                 Premium Shopping Experience
               </p>
 
-              <button className="mt-8 w-full rounded-xl bg-amber-400 py-3 font-semibold text-slate-900 transition hover:bg-amber-500 cursor-pointer">
+              <button
+                className="mt-8 w-full rounded-xl bg-amber-400 py-3 font-semibold text-slate-900 transition hover:bg-amber-500 cursor-pointer"
+                onClick={() => navigate("/shop")}
+              >
                 Explore Collection
               </button>
             </div>

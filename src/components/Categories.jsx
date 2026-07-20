@@ -71,7 +71,7 @@ const Categories = () => {
 
   return (
     <section className="bg-slate-950 pt-10 pb-20">
-      <div className="mx-auto max-w-7xl px-5">
+      <div className="mx-auto max-w-7xl px-5 sm:px-10">
         {/* Heading */}
 
         <div className="mb-10 flex flex-col sm:flex-row items-center justify-between">
@@ -86,11 +86,11 @@ const Categories = () => {
           </div>
 
           <div className="items-center gap-4 flex max-sm:mt-4">
-            <button className="category-prev flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-900 hover:shadow-lg hover:shadow-amber-400/30">
+            <button className="category-prev flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-900 hover:shadow-lg hover:shadow-amber-400/30 cursor-pointer">
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            <button className="category-next flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-900 hover:shadow-lg hover:shadow-amber-400/30">
+            <button className="category-next flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-900 hover:shadow-lg hover:shadow-amber-400/30 cursor-pointer">
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>

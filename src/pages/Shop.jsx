@@ -2,15 +2,14 @@ import { Search, SlidersHorizontal } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import { useContext, useEffect, useState } from "react";
 import ProductContext from "../context/ProductContext";
+import Shimmer from "../components/Shimmer";
 
 const Shop = () => {
-  const { products, categories } = useContext(ProductContext);
+  const { products, categories, loading } = useContext(ProductContext);
   const [searchText, setSearchText] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortBy, setSortBy] = useState("default");
   const [productCategory, setProductCategory] = useState("all");
-
-  console.log(filteredProducts);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,12 +50,22 @@ const Shop = () => {
     return () => clearTimeout(timer);
   }, [products, searchText, sortBy, productCategory]);
 
+  if (loading) {
+    return (
+      <section className="px-5 sm:px-10 py-12 bg-slate-950">
+        <div className="mx-auto max-w-7xl">
+        <Shimmer count={12} />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="min-h-screen bg-slate-950 py-12">
-      <div className="mx-auto max-w-7xl px-5">
+      <div className="mx-auto max-w-7xl px-5 sm:px-10">
         {/* Hero */}
 
-        <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-8 shadow-xl">
+        <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 sm:p-8 shadow-xl">
           <span className="rounded-full bg-amber-400/10 px-4 py-2 text-sm font-medium text-amber-400">
             Premium Collection
           </span>

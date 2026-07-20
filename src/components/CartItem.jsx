@@ -1,12 +1,18 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
+import { useNavigate } from "react-router";
 
 const CartItem = ({ product }) => {
-  const { removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+  const { removeFromCart, increaseQuantity, decreaseQuantity } =
+    useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col sm:flex-row gap-5 rounded-3xl border border-slate-800 bg-slate-900 p-5">
+    <div
+      className="flex flex-col sm:flex-row gap-5 rounded-3xl border border-slate-800 bg-slate-900 p-5"
+      onClick={() => navigate(`/products/${product.id}`)}
+    >
       <img
         src={product.thumbnail}
         alt={product.title}
@@ -28,8 +34,13 @@ const CartItem = ({ product }) => {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button className="rounded-lg border border-slate-700 p-2 text-white"
-            onClick={()=> decreaseQuantity(product)}>
+            <button
+              className="rounded-lg border border-slate-700 p-2 text-white cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                decreaseQuantity(product);
+              }}
+            >
               <Minus size={18} />
             </button>
 
@@ -38,17 +49,23 @@ const CartItem = ({ product }) => {
             </span>
 
             <button
-              className="rounded-lg border border-slate-700 p-2 text-white"
-              onClick={() => increaseQuantity(product.id)}
+              className="rounded-lg border border-slate-700 p-2 text-white cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                increaseQuantity(product.id);
+              }}
             >
               <Plus size={18} />
             </button>
           </div>
 
           <button
-            className="flex items-center justify-center gap-2 rounded-xl bg-red-500/10 
+            className="flex items-center justify-center gap-2 rounded-xl bg-red-500/10 cursor-pointer
           px-4 sm:px-5 py-3 font-medium text-red-400 transition-all duration-300 hover:bg-red-500 hover:text-white"
-            onClick={() => removeFromCart(product.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              removeFromCart(product.id);
+            }}
           >
             <Trash2 className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>Remove</span>

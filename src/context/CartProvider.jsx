@@ -57,7 +57,11 @@ const CartProvider = ({ children }) => {
 
   const decreaseQuantity = (product) => {
     setCartItems((prev) => {
-      if (product.quantity > 1) {
+      const cartItem = prev.find((item) => item.id === product.id);
+
+      if (!cartItem) return prev;
+
+      if (cartItem.quantity > 1) {
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity - 1 }
