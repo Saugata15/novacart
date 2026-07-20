@@ -27,6 +27,8 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const categories = ["all" , ...new Set(products.map((item)=>item.category))]
+
   useEffect(() => {
     if (products.length === 0) {
       fetchProducts();
@@ -38,7 +40,7 @@ const ProductProvider = ({ children }) => {
   }, [products]);
 
   return (
-    <ProductContext.Provider value={{ products, loading, error }}>
+    <ProductContext.Provider value={{ products, loading, error , categories }}>
       {children}
     </ProductContext.Provider>
   );

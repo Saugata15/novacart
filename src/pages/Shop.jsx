@@ -4,20 +4,52 @@ import { useContext, useEffect, useState } from "react";
 import ProductContext from "../context/ProductContext";
 
 const Shop = () => {
-  const { products } = useContext(ProductContext);
+  const { products, categories } = useContext(ProductContext);
   const [searchText, setSearchText] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortBy, setSortBy] = useState("default");
+  const [productCategory, setProductCategory] = useState("all");
+
+  console.log(filteredProducts);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFilteredProducts(
-        products.filter((item) =>
-          item.title.toLowerCase().includes(searchText.toLowerCase()),
-        ),
-      );
+      let updatedProducts = [...products];
+
+      if (searchText.trim()) {
+        updatedProducts = updatedProducts.filter((item) =>
+          item.title.toLowerCase().includes(searchText.trim().toLowerCase()),
+        );
+      }
+
+      if (productCategory !== "all") {
+        updatedProducts = updatedProducts.filter(
+          (item) => item.category === productCategory,
+        );
+      }
+
+      switch (sortBy) {
+        case "price-low": {
+          updatedProducts.sort((a, b) => a.price - b.price);
+          break;
+        }
+        case "price-high": {
+          updatedProducts.sort((a, b) => b.price - a.price);
+          break;
+        }
+        case "high-rating": {
+          updatedProducts.sort((a, b) => b.rating - a.rating);
+          break;
+        }
+        default:
+          break;
+      }
+
+      setFilteredProducts(updatedProducts);
     }, 300);
+
     return () => clearTimeout(timer);
-  }, [searchText, products]);
+  }, [products, searchText, sortBy, productCategory]);
 
   return (
     <section className="min-h-screen bg-slate-950 py-12">
@@ -61,12 +93,15 @@ const Shop = () => {
           <div className="flex items-center gap-3">
             <SlidersHorizontal className="text-amber-400" />
 
-            <select className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-amber-400">
-              <option>Default</option>
-              <option>Price: Low → High</option>
-              <option>Price: High → Low</option>
-              <option>Highest Rated</option>
-              <option>Newest</option>
+            <select
+              className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-amber-400 cursor-pointer"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value="default">Default</option>
+              <option value="price-low">Price: Low → High</option>
+              <option value="price-high">Price: High → Low</option>
+              <option value="high-rating">Highest Rated</option>
             </select>
           </div>
         </div>
@@ -77,47 +112,57 @@ const Shop = () => {
           <h2 className="mb-4 text-lg font-semibold text-white">Categories</h2>
 
           <div className="flex flex-wrap gap-3">
-            <button className="rounded-full bg-amber-400 px-5 py-2 font-medium text-slate-900">
-              All
-            </button>
-
-            <button className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-              Smartphones
-            </button>
-
-            <button className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-              Laptops
-            </button>
-
-            <button className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-              Beauty
-            </button>
-
-            <button className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-              Furniture
-            </button>
-
-            <button className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-              Groceries
-            </button>
+            {categories.map((item) => (
+              <button
+                className={`cursor-pointer rounded-full px-5 py-2 font-medium transition-all duration-300 ${
+                  productCategory === item
+                    ? "bg-amber-400 text-slate-900"
+                    : "border border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-400 hover:text-amber-400"
+                }`}
+                key={item}
+                value={item}
+                onClick={(e) => setProductCategory(e.target.value)}
+              >
+                {item[0].toUpperCase() + item.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Heading */}
 
         <div className="mt-10 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-white">All Products</h2>
+          <h2 className="text-2xl font-bold text-white">
+            {productCategory === "all"
+              ? "All Products"
+              : `${productCategory[0].toUpperCase()}${productCategory.slice(1)}`}
+          </h2>
 
-          <p className="text-slate-400">{filteredProducts.length} Products Found</p>
+          <p className="text-slate-400">
+            {filteredProducts.length} Products Found
+          </p>
         </div>
 
         {/* Products */}
+        {filteredProducts.length > 0 ? (
+          <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-16 rounded-3xl border border-slate-800 bg-slate-900 p-12 text-center">
+            <Search className="mx-auto mb-4 h-10 w-10 text-slate-500" />
 
-        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredProducts.map((item) => (
-            <ProductCard key={item.id} product={item} />
-          ))}
-        </div>
+            <h3 className="text-2xl font-semibold text-white">
+              No Products Found
+            </h3>
+
+            <p className="mt-2 text-slate-400">
+              Try a different search or category.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
