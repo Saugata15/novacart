@@ -15,7 +15,7 @@ const RelatedProducts = ({ category, id }) => {
 
   return (
     <div className="mt-20">
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-col sm:flex-row gap-5 sm:gap-0 items-start sm:items-center justify-between">
         <h2 className="text-3xl font-bold text-white">Related Products</h2>
 
         <button

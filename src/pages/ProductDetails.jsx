@@ -20,7 +20,7 @@ const ProductDetails = () => {
       setIsLoading(true);
       const res = await axios.get(`https://dummyjson.com/products/${id}`);
       serSingleProductData(res.data);
-      
+
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -79,8 +79,8 @@ const ProductDetails = () => {
           </h2>
 
           <div className="space-y-6">
-            {singleProductData.reviews.map((item) => (
-              <Reviews key={item.date} review={item} />
+            {singleProductData.reviews.map((item,index) => (
+              <Reviews key={index} review={item} />
             ))}
           </div>
         </div>

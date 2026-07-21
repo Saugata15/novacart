@@ -45,7 +45,7 @@ const Cart = () => {
           Shopping Cart
         </h1>
 
-        <div className="grid md:gap-5 lg-gap-8 lg:grid-cols-[2fr_1fr]">
+        <div className="grid gap-5 lg-gap-8 lg:grid-cols-[2fr_1fr]">
           {/* Items */}
 
           <div className="space-y-5">
@@ -58,7 +58,7 @@ const Cart = () => {
 
           <div className="sticky top-28 h-fit rounded-3xl border border-slate-800 bg-slate-900 px-5 md:px-6 py-8 sm:p-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold text-white max-sm:text-center">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white max-sm:text-center">
                 Order Summary
               </h2>
 

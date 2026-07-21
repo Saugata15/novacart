@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
 import ProductDetails from "../pages/ProductDetails";
+import CategoryPage from "../pages/CategoryPage";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </div>
