@@ -20,7 +20,7 @@ const ProductDetails = () => {
       setIsLoading(true);
       const res = await axios.get(`https://dummyjson.com/products/${id}`);
       serSingleProductData(res.data);
-      console.log(res.data);
+      
     } catch (error) {
       console.log(error.message);
     } finally {

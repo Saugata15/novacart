@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10"
+      className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-400/10 cursor-pointer"
       onClick={() => navigate(`/products/${product.id}`)}
     >
       {/* Product Image */}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
 import CartItem from "../components/CartItem";
+import RelatedProducts from "../components/RelatedProducts";
 
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
@@ -113,6 +114,8 @@ const Cart = () => {
             </button>
           </div>
         </div>
+
+        <RelatedProducts category={cartItems[0].category} id={cartItems[0].id}/>
       </div>
     </section>
   );

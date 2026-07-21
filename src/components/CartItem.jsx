@@ -10,7 +10,7 @@ const CartItem = ({ product }) => {
 
   return (
     <div
-      className="flex flex-col sm:flex-row gap-5 rounded-3xl border border-slate-800 bg-slate-900 p-5"
+      className="flex flex-col sm:flex-row gap-5 rounded-3xl border border-slate-800 bg-slate-900 p-5 cursor-pointer"
       onClick={() => navigate(`/products/${product.id}`)}
     >
       <img

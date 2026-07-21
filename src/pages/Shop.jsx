@@ -7,7 +7,7 @@ import Shimmer from "../components/Shimmer";
 const Shop = () => {
   const { products, categories, loading } = useContext(ProductContext);
   const [searchText, setSearchText] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortBy, setSortBy] = useState("default");
   const [productCategory, setProductCategory] = useState("all");
 
