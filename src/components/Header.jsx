@@ -42,7 +42,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 lg:flex">
-          <NavLink to="/" className={navStyle}>
+          <NavLink to="/home" className={navStyle}>
             Home
           </NavLink>
 
