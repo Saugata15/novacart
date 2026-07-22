@@ -10,6 +10,7 @@ import CategoryPage from "../pages/CategoryPage";
 import LoginPage from "../pages/LoginPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import  Layout  from "../layout/Layout";
+import ProfilePage from "../pages/ProfilePage";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
             <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/category/:categoryName" element={<CategoryPage />} />
             <Route path="/products/:id" element={<ProductDetails />} />

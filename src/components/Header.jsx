@@ -94,7 +94,10 @@ const Header = () => {
           </button>
 
           {/* Profile */}
-          <button className="hidden sm:flex cursor-pointer">
+          <button
+            className="hidden sm:flex cursor-pointer"
+            onClick={() => navigate("/profile")}
+          >
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 font-bold text-slate-900 transition hover:bg-amber-500">
               {loggedInUser?.name?.charAt(0).toUpperCase()}
             </div>
@@ -186,7 +189,10 @@ const Header = () => {
             </button>
 
             {/* Profile */}
-            <button className="cursor-pointer">
+            <button
+              className="cursor-pointer"
+              onClick={() => navigate("/profile")}
+            >
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-400 font-bold text-slate-900 transition hover:bg-amber-500">
                 {loggedInUser?.name?.charAt(0).toUpperCase()}
               </div>

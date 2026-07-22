@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
 
   const registerNewUser = (data) => {
     setRegisteredUsers((prev) => [...prev, data]);
-    console.log(data);
   };
 
   const logout = () => {

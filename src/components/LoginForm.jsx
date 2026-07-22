@@ -1,10 +1,12 @@
-import { ArrowRight, Eye, Lock, Mail, ShoppingBag } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Lock, Mail, ShoppingBag } from "lucide-react";
 import useFormData from "../hooks/useFormData";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 
 const LoginForm = ({ setShowRegister }) => {
+  const [loginError, setLoginError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors, reset } = useFormData();
 
   const { loginUser } = useContext(AuthContext);
@@ -18,7 +20,7 @@ const LoginForm = ({ setShowRegister }) => {
       reset();
       navigate("/home");
     } else {
-      alert("Invalid email or password");
+      setLoginError("Invalid email or password");
     }
   };
 
@@ -98,16 +100,17 @@ const LoginForm = ({ setShowRegister }) => {
                 {...register("password", {
                   required: "Password is required",
                 })}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 className="w-full rounded-xl border border-slate-700 bg-slate-950 py-4 pl-14 pr-14 text-white outline-none transition focus:border-amber-400"
               />
 
               <button
+                onClick={() => setShowPassword(!showPassword)}
                 type="button"
                 className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-amber-400"
               >
-                <Eye size={18} />
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             {errors.password && (
@@ -121,7 +124,11 @@ const LoginForm = ({ setShowRegister }) => {
 
           <div className="flex items-center justify-between text-sm">
             <label className="flex cursor-pointer items-center gap-2 text-slate-400">
-              <input type="checkbox" className="accent-amber-400" />
+              <input
+                {...register("remember")}
+                type="checkbox"
+                className="accent-amber-400"
+              />
               Remember me
             </label>
 
@@ -132,7 +139,7 @@ const LoginForm = ({ setShowRegister }) => {
               Forgot Password?
             </button>
           </div>
-
+          {loginError && <p className="text-sm text-red-400">{loginError}</p>}
           {/* Button */}
 
           <button

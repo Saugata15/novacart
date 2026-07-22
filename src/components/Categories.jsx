@@ -27,7 +27,7 @@ const categoryIcons = {
 
 const Categories = () => {
   const { categories } = useContext(ProductContext);
-  console.log(categories);
+
   const navigate = useNavigate();
 
   return (
