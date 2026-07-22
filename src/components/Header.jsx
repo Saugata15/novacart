@@ -10,10 +10,12 @@ import {
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import CartContext from "../context/CartContext";
+import AuthContext from "../context/AuthContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { logout, loggedInUser } = useContext(AuthContext);
 
   const { cartItems, wishlistItems } = useContext(CartContext);
 
@@ -92,12 +94,17 @@ const Header = () => {
           </button>
 
           {/* Profile */}
-          <button className="hidden sm:block cursor-pointer rounded-xl border border-slate-700 p-2 transition hover:border-amber-400 hover:bg-slate-800 sm:p-3">
-            <User className="text-slate-200 h-5 w-5 lg:h-6 lg:w-6" />
+          <button className="hidden sm:flex cursor-pointer">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 font-bold text-slate-900 transition hover:bg-amber-500">
+              {loggedInUser?.name?.charAt(0).toUpperCase()}
+            </div>
           </button>
 
           {/* Desktop Logout */}
-          <button className="hidden cursor-pointer items-center gap-2 rounded-xl bg-amber-400 px-5 py-3 font-semibold text-slate-900 transition hover:bg-amber-500 lg:flex">
+          <button
+            className="hidden cursor-pointer items-center gap-2 rounded-xl bg-amber-400 px-5 py-3 font-semibold text-slate-900 transition hover:bg-amber-500 lg:flex"
+            onClick={() => logout()}
+          >
             <LogOut size={18} />
             Logout
           </button>
@@ -107,11 +114,7 @@ const Header = () => {
             onClick={() => setIsOpen(!isOpen)}
             className="cursor-pointer rounded-xl border border-slate-700 p-2 text-white transition hover:border-amber-400 hover:bg-slate-800 sm:p-3 lg:hidden"
           >
-            {isOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
@@ -183,12 +186,17 @@ const Header = () => {
             </button>
 
             {/* Profile */}
-            <button className="block sm:hidden cursor-pointer rounded-xl border border-slate-700 p-2 transition hover:border-amber-400 hover:bg-slate-800 sm:p-3">
-              <User className="text-slate-200 h-5 w-5" />
+            <button className="cursor-pointer">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-400 font-bold text-slate-900 transition hover:bg-amber-500">
+                {loggedInUser?.name?.charAt(0).toUpperCase()}
+              </div>
             </button>
           </div>
 
-          <button className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 font-semibold text-slate-900">
+          <button
+            className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 font-semibold text-slate-900"
+            onClick={() => logout()}
+          >
             <LogOut size={18} />
             Logout
           </button>

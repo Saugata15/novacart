@@ -2,14 +2,14 @@ import { ShoppingBag} from "lucide-react";
 
 const LoginBanner = () => {
   return (
-    <div className="relative hidden h-full w-full overflow-hidden border-r border-slate-800 lg:flex">
+    <div className="relative hidden h-full w-full overflow-hidden lg:flex">
 
       {/* Decorative circles */}
 
       <div className="absolute -left-32 top-24 h-72 w-72 rounded-full border border-amber-400/10" />
       <div className="absolute bottom-16 right-10 h-56 w-56 rounded-full border border-slate-700/30" />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-14 py-12">
+      <div className="relative z-10 flex h-full flex-col gap-22 px-14 py-12">
 
         {/* Logo */}
 

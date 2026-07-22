@@ -18,6 +18,27 @@ const AuthProvider = ({ children }) => {
     }
   });
 
+  const registerNewUser = (data) => {
+    setRegisteredUsers((prev) => [...prev, data]);
+    console.log(data);
+  };
+
+  const logout = () => {
+    setLoggedInUser(null);
+  };
+
+  const loginUser = (data) => {
+    let user = registeredUsers.find(
+      (user) => user.email === data.email && user.password === data.password,
+    );
+
+    if (user) {
+      setLoggedInUser(user);
+      return true;
+    }
+    return false;
+  };
+
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   }, [loggedInUser]);
@@ -33,6 +54,9 @@ const AuthProvider = ({ children }) => {
         setLoggedInUser,
         registeredUsers,
         setRegisteredUsers,
+        registerNewUser,
+        loginUser,
+        logout,
       }}
     >
       {children}

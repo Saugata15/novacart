@@ -9,7 +9,7 @@ import ProductDetails from "../pages/ProductDetails";
 import CategoryPage from "../pages/CategoryPage";
 import LoginPage from "../pages/LoginPage";
 import ProtectedRoutes from "./ProtectedRoutes";
-import { Layout } from "lucide-react";
+import  Layout  from "../layout/Layout";
 
 const AppRoutes = () => {
   return (
