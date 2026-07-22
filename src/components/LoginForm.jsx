@@ -3,6 +3,7 @@ import useFormData from "../hooks/useFormData";
 import { useNavigate } from "react-router";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ setShowRegister }) => {
   const [loginError, setLoginError] = useState("");
@@ -19,6 +20,7 @@ const LoginForm = ({ setShowRegister }) => {
     if (success) {
       reset();
       navigate("/home");
+      toast.success("User Logged in");
     } else {
       setLoginError("Invalid email or password");
     }
